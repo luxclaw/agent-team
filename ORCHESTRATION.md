@@ -1,14 +1,13 @@
-# ORCHESTRATION.md - Multi-Agent Coordination
+# ORCHESTRATION.md — Multi-Agent Coordination
 
-Rules for how agents work together as a distributed team.
+How 4 agents work together as an autonomous team.
 
 ## Core Principles
 
-1. **Asynchronous by default** - don't wait for responses unless critical
-2. **Transparent communication** - all work visible in Slack channels
-3. **Trust but verify** - agents trust each other's expertise but validate cross-domain
-4. **Bias toward action** - if unclear, propose solution and iterate
-5. **Escalate blockers** - if stuck >30min, ping Lux in #general
+1. **Async by default** — don't wait for responses unless critical
+2. **Bias toward action** — if unclear, propose a solution and iterate
+3. **Transparent work** — all decisions and progress visible in Slack
+4. **Escalate fast** — if stuck >30 min, escalate; don't spin
 
 ## Communication Patterns
 
@@ -16,30 +15,29 @@ Rules for how agents work together as a distributed team.
 ```
 @Agent: Can you [specific task]?
 Context: [why this matters]
-Deadline: [when needed]
-Dependencies: [what's blocking/needed]
+Priority: [high/med/low]
 ```
 
 ### Reporting Completion
 ```
 ✅ [Task] completed
 Result: [what was delivered]
-Location: [PR link / file path / dashboard URL]
-Next: [suggested follow-up action]
+Location: [PR link / file path]
+Next: [suggested follow-up]
 ```
 
-### Asking for Review
+### Raising a PR
 ```
-🔍 Review needed: [PR/report/design]
+🔍 PR ready: [title]
 Link: [URL]
-Focus areas: [what to review specifically]
-Reviewers: @Agent1 @Agent2
+Changes: [summary]
+Reviewer: @Agent
 ```
 
 ### Raising Issues
 ```
-⚠️ Issue: [problem description]
-Impact: [who/what is affected]
+⚠️ Issue: [problem]
+Impact: [what's affected]
 Attempted: [what you tried]
 Need: [what would unblock]
 ```
@@ -49,238 +47,134 @@ Need: [what would unblock]
 ### Who Decides What
 
 **Lux (CEO):**
-- Product vision and roadmap
-- Major architectural changes
-- Budget and resource allocation
-- External partnerships
-- Revenue strategy
+- Product priorities and roadmap
+- Cross-agent conflict resolution
+- Resource allocation
+- What to build next (with Nova's input)
 
 **Mercury (CTO):**
 - Code architecture and patterns
-- Technology stack choices
-- Performance targets
-- Code quality standards
-- Technical debt prioritization
+- UX/UI design decisions
+- Technology choices
+- App features and implementation approach
 
-**Nova (Product):**
-- Feature prioritization (user value)
-- UI/UX design decisions
-- Dashboard layout
-- User interaction flows
+**Quant:**
+- Algorithm methodology
+- Data schema and pipeline design
+- Backtesting strategy
+- Metric definitions and grading
 
-**Atlas (Data):**
-- Data schema design
-- API integration strategy
-- Caching and optimization
-- Data quality standards
-
-**Sage (Research):**
-- Report structure and format
-- Analysis methodology
-- Investment thesis validation
-- Stock grading criteria
-
-**Scout (Discovery):**
-- IPO tracking schedule
-- Screening criteria for new stocks
-- Sector focus areas
-
-**Ops (DevOps):**
-- Deployment process
-- Monitoring and alerting rules
-- Backup strategy
-- Infrastructure provisioning
+**Nova (CMO):**
+- Go-to-market strategy
+- User acquisition channels
+- Competitive positioning
+- Product-market fit research
 
 ### Escalation Path
 
-1. **Try to resolve** - use your best judgment
-2. **Consult relevant expert** - ping agent with domain expertise
-3. **Propose solution** - if no clear answer, suggest and iterate
-4. **Escalate to Lux** - if business-critical or cross-domain conflict
-5. **Escalate to Tisse** - only for major strategic decisions
+1. **Try to resolve** — use your judgment
+2. **Consult peer** — ask the relevant agent
+3. **Escalate to Lux** — if cross-domain or unresolved
+4. **Escalate to Tisse** — only for major strategic decisions or code approvals
 
 ## Collaboration Patterns
 
-### Code Review (2-agent minimum)
-1. Author posts PR to #engineering
-2. **Mercury** reviews code quality + architecture (required)
-3. **Lux** reviews business logic + security (required)
-4. Optional: domain expert (Atlas for data, Nova for UI)
-5. Merge after 2 approvals
+### Code Review (2-person + Founder)
+1. Author creates PR on feature branch
+2. Posts to #engineering
+3. Cross-reviewer (Mercury ↔ Quant) reviews
+4. Tisse gives final approval
+5. Merge to main
 
-### Research Report (2-agent validation)
-1. **Sage** generates report
-2. Posts to #research
-3. **Mercury** validates technical metrics
-4. **Lux** validates investment thesis
-5. Publish after 2 approvals
+### Feature Development (Full Loop)
+1. **Nova** identifies opportunity (market research, user need)
+2. **Lux** validates strategic fit, sets priority
+3. **Mercury** designs UX/UI and technical approach
+4. **Mercury or Quant** implements on feature branch
+5. Cross-review + Tisse approval
+6. Ship
 
-### Feature Design (3-agent collaboration)
-1. **Nova** proposes feature in #product
-2. **Mercury** creates technical design in #engineering
-3. **Lux** validates business value
-4. Agreement = proceed to implementation
+### Algorithm Improvement
+1. **Quant** identifies improvement (backtest results, new data)
+2. **Quant** implements and tests on branch
+3. **Mercury** reviews code
+4. **Tisse** reviews business logic
+5. Merge after approvals
 
-### Data Pipeline Changes (2-agent coordination)
-1. **Atlas** proposes change
-2. **Mercury** reviews impact on system
-3. **Sage** validates impact on analysis
-4. Agreement = implement
+### Strategy / Product Planning
+1. **Nova** presents market research or opportunity
+2. **Lux** synthesizes with product vision
+3. **Mercury** provides technical feasibility
+4. **Lux** makes priority call (or escalates to Tisse)
 
-## Conflict Resolution
+## Weekly Rhythm
 
-### Disagreements
-1. **State positions clearly** - each agent explains reasoning
-2. **Identify root cause** - what's the actual disagreement?
-3. **Propose compromises** - can both be satisfied?
-4. **Escalate to Lux** - if no consensus after 3 rounds
-5. **Lux decides** - binding decision, document reasoning
+### Monday — Lux posts weekly priorities in #general
+- What shipped last week
+- This week's focus areas
+- Any blockers or dependencies
 
-### Blocking Issues
-1. **Document blocker** - clear description in relevant channel
-2. **Tag owner** - who can unblock this?
-3. **Propose workaround** - can we proceed differently?
-4. **Set deadline** - if not unblocked by X, escalate
-5. **Lux intervention** - reprioritize or reallocate
+### Throughout the week — Async work in channels
+- Agents work independently on their domains
+- Coordinate in relevant channels as needed
+- PRs flow through review process
 
-## Meeting Rhythms
-
-### Daily Standup (async in #general)
-Each agent posts before 9am PST:
-```
-Yesterday: [what shipped]
-Today: [what you're working on]
-Blockers: [anything stuck]
-```
-
-### Weekly Planning (Monday 9am PST, #general)
-- **Lux** shares week priorities
-- Each agent commits to deliverables
-- Identify cross-team dependencies
-- Align on this week's success criteria
-
-### Bi-weekly Retrospective (Friday 4pm PST, #general)
-- What went well?
-- What could be better?
-- Process improvements?
-- Team velocity trends?
-
-### Monthly Strategy (First Monday, #product)
-- **Lux** shares updated roadmap
-- Review previous month metrics
-- Adjust priorities based on data
-- Set next month OKRs
+### Friday — Lux posts weekly summary in #general
+- Progress against priorities
+- Key decisions made
+- Adjustments for next week
 
 ## Handoff Protocols
 
-### Code Handoff (Dev → Ops)
+### Nova → Mercury (Feature Request)
 ```
-@Ops: Ready for deploy
-PR: [link]
-Changes: [summary]
-Tests: [coverage, manual validation]
-Risks: [potential issues]
-Rollback: [how to undo]
+@Mercury: Feature idea from market research
+What: [feature description]
+Why: [user need / market data]
+Priority: [suggested]
 ```
 
-### Research Handoff (Research → Product)
+### Mercury → Quant (Data Need)
 ```
-@Nova: Research complete
-Report: [link]
-Key findings: [3-5 bullets]
-Product implications: [what this means for dashboard/features]
-Recommendations: [suggested actions]
-```
-
-### Discovery Handoff (Scout → Research)
-```
-@Sage: New stock candidate
-Ticker: [symbol]
-Why interesting: [quick thesis]
-Data available: [what's in FMP]
-Priority: [high/med/low]
+@Quant: Need data/algo support for feature
+What: [what's needed]
+Context: [how it fits the product]
+Timeline: [when needed]
 ```
 
-## Context Sharing
-
-### Shared Memory
-- Daily logs in `/memory/YYYY-MM-DD.md`
-- Persistent decisions in `MEMORY.md`
-- Active tasks in `TASKS.md`
-- Team metrics in `METRICS.md`
-
-### Cross-Agent Queries
-When you need info from another agent:
-1. Check their daily log first
-2. Search shared memory
-3. If not found, ask in relevant channel
-4. Tag agent only if time-sensitive
-
-### Knowledge Base
-- Product specs in `/docs/features/`
-- Technical docs in `/docs/architecture/`
-- Research methodology in `/docs/research/`
-- Process runbooks in `/docs/processes/`
+### Quant → Mercury (PR Ready)
+```
+@Mercury: PR ready for review
+Link: [PR URL]
+Changes: [what changed in algo/data]
+Testing: [backtest results, validation]
+```
 
 ## Quality Standards
 
 ### Code
-- Passes linting and tests
-- Includes inline documentation
-- No TODOs in merged code
-- Performance impact measured
-- Security reviewed by Lux
+- Tests for new functionality
+- No hardcoded secrets
+- Performance impact considered
+- Clean, readable, documented
 
-### Research
-- Sources cited
-- Metrics validated
-- Investment thesis clear
-- Risks documented
-- Actionable recommendations
+### Algorithm
+- Backtest results included
+- Methodology documented
+- Edge cases addressed
+- Compared against baseline
 
-### Product
-- User value articulated
+### Product / Marketing
+- User need validated
+- Competitive context provided
 - Success metrics defined
-- Launch plan documented
-- Rollback strategy exists
-
-### Operations
-- Monitored and alerted
-- Documented in runbook
-- Tested in staging first
-- Rollback tested
+- Actionable recommendations
 
 ## Red Flags 🚩
 
-Escalate immediately if you see:
-- Data pipeline failing >1 hour
-- Security vulnerability discovered
-- Breaking change without migration plan
-- Agent stuck >2 hours on same problem
-- Cross-team conflict escalating
-- Human (Tisse) waiting on response >4 hours
+Escalate immediately:
 - Production down
-
-## Success Metrics
-
-### Team Velocity
-- Features shipped per week
-- PR merge time (target: <24h)
-- Issue resolution time (target: <48h)
-- Code review turnaround (target: <4h)
-
-### Quality
-- Bug rate (target: <5% of releases)
-- Uptime (target: >99.5%)
-- Test coverage (target: >80%)
-- Documentation coverage (target: 100% public APIs)
-
-### Business
-- New stocks added per week
-- Reports published per week
-- Dashboard active users
-- Revenue growth (when monetized)
-
----
-
-**Remember:** We're a team. Help each other succeed. Celebrate wins. Learn from failures. Ship fast.
+- Security vulnerability discovered
+- Data pipeline broken >1 hour
+- Agent stuck >2 hours on same problem
+- Tisse waiting on response >4 hours
