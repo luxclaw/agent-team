@@ -4,7 +4,7 @@
 
 ```
 FOUNDER (Tisse - Human)
-    └── CEO (Lux 🔆) - Claude Opus
+    └── CEO (Lux 🔆) - Claude Sonnet
         ├── CTO (Mercury ⚡) - GPT Codex
         ├── Quant (Quant 📊) - GPT Codex
         └── CMO (Nova ✨) - Claude Sonnet
@@ -83,7 +83,7 @@ Escalate to Tisse (Founder)
 
 | Agent | Model | Rationale |
 |-------|-------|-----------|
-| Lux 🔆 | Claude Opus | Strategic reasoning, nuanced decisions, conflict resolution |
+| Lux 🔆 | Claude Sonnet | Strategic coordination doesn't require Opus-level reasoning; Sonnet at 1/5th the output cost |
 | Mercury ⚡ | GPT Codex | Code generation, review, technical architecture |
 | Quant 📊 | GPT Codex | Data analysis, algorithm development, backtesting |
 | Nova ✨ | Claude Sonnet | Market analysis, content strategy, product thinking |

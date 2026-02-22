@@ -8,18 +8,18 @@ A 4-agent team running the 100x Stocks project as an autonomous business. Agents
 FOUNDER (Tisse - Human)
     Final authority on all code merges to main.
     Product direction, strategy, budget.
-    └── CEO (Lux 🔆) - Claude Opus
+    └── CEO (Lux 🔆) - Claude Sonnet
         ├── CTO (Mercury ⚡) - GPT Codex
         ├── Quant (Quant 📊) - GPT Codex
         └── CMO (Nova ✨) - Claude Sonnet
 ```
 
-| Agent | Role | Focus |
-|-------|------|-------|
-| **Lux 🔆** | CEO | Agent operations, product vision, company success, Tisse interface |
-| **Mercury ⚡** | CTO | Code review, UX/UI, app design/features, building the product |
-| **Quant 📊** | Data/Algo | Algorithm tuning, backtesting, data pipelines, continuous improvement |
-| **Nova ✨** | CMO | User acquisition, market research, product-market fit, go-to-market |
+| Agent | Role | Model | Focus |
+|-------|------|-------|-------|
+| **Lux 🔆** | CEO | Claude Sonnet | Agent operations, product vision, company success, Tisse interface |
+| **Mercury ⚡** | CTO | GPT-5.2 Codex | Code review, UX/UI, app design/features, building the product |
+| **Quant 📊** | Data/Algo | GPT-5.2 Codex | Algorithm tuning, backtesting, data pipelines, continuous improvement |
+| **Nova ✨** | CMO | Claude Sonnet | User acquisition, market research, product-market fit, go-to-market |
 
 ## PR Approval Rules
 
@@ -69,6 +69,7 @@ Agents can autonomously create branches, write code, and test. Only merges to `m
 | [HIERARCHY.md](HIERARCHY.md) | Org structure, decision rights, PR gates |
 | [ORCHESTRATION.md](ORCHESTRATION.md) | Coordination protocols, conflict resolution |
 | [COMMUNICATION_MAP.md](COMMUNICATION_MAP.md) | Slack channels, communication patterns |
+| [AUTONOMY.md](AUTONOMY.md) | Wake-up schedules, token budgets, collaboration model |
 | [ENGINEERING.md](ENGINEERING.md) | Product engineering principles |
 | [SOUL.md](SOUL.md) | Shared agent personality |
 | [AGENTS.md](AGENTS.md) | Workspace conventions |

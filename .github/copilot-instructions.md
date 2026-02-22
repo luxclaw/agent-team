@@ -15,6 +15,7 @@ Agents run as Slack bots via OpenClaw on a Raspberry Pi 5.
 - **ORCHESTRATION.md** — Multi-agent coordination: communication patterns, decision framework, escalation paths, handoff protocols
 - **HIERARCHY.md** — Org chart, decision rights, PR approval gates, model assignments
 - **COMMUNICATION_MAP.md** — Slack channel structure, interaction patterns, response expectations
+- **AUTONOMY.md** — Wake-up schedules (cron), token budgets, collaboration model, cost estimates
 - **ENGINEERING.md** — Product engineering principles (security-first, visual excellence, collaborative workflow)
 - **roles/** — Per-agent detailed instructions (LUX.md, MERCURY.md, QUANT.md, NOVA.md)
 
@@ -22,7 +23,7 @@ Agents run as Slack bots via OpenClaw on a Raspberry Pi 5.
 
 | Agent | Role | Model | Focus |
 |-------|------|-------|-------|
-| Lux 🔆 | CEO | Claude Opus | Agent ops, product vision, company success |
+| Lux 🔆 | CEO | Claude Sonnet | Agent ops, product vision, company success |
 | Mercury ⚡ | CTO | GPT Codex | Code review, UX/UI, app design, building the product |
 | Quant 📊 | Data/Algo | GPT Codex | Algorithm tuning, backtesting, data pipelines |
 | Nova ✨ | CMO | Claude Sonnet | User acquisition, market research, product-market fit |
