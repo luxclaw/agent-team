@@ -56,10 +56,20 @@ Mercury is the technical gatekeeper on all code. Tisse has final say on all merg
 - **Code:** GitHub
 - **Financial Data:** FMP API
 
+## Repos
+
+| Repo | Purpose |
+|------|---------|
+| `luxclaw/agent-team` (this repo) | Agent identities, roles, coordination protocols — OpenClaw reads this |
+| `mfoster58/100x-stocks` | Product code (Python + Node.js) — Copilot writes code here |
+
+Agents are **configured** in `agent-team`, but **work** in `100x-stocks`.
+
 ## Documentation
 
 | File | Purpose |
 |------|---------|
+| [SETUP.md](SETUP.md) | **Start here** — step-by-step launch guide |
 | [HIERARCHY.md](HIERARCHY.md) | Org structure, decision rights, PR gates |
 | [ORCHESTRATION.md](ORCHESTRATION.md) | Coordination protocols, issue creation workflow |
 | [COMMUNICATION_MAP.md](COMMUNICATION_MAP.md) | Slack channels, communication patterns |

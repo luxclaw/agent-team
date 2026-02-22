@@ -205,3 +205,36 @@ Escalate immediately:
 - >3 PRs sitting in `ready-for-tisse` for >48 hours (Tisse bottleneck — ping them)
 - Copilot failing repeatedly on same Issue type
 - Agent stuck >2 hours on same problem
+
+## Cross-Repo Workflow
+
+Agents are configured in `luxclaw/agent-team` but build in `mfoster58/100x-stocks`.
+
+```
+agent-team (OpenClaw reads)          100x-stocks (Copilot works)
+├── roles/*.md (who agents are)      ├── src/ (Python screener)
+├── ORCHESTRATION.md (how to work)   ├── public/ (dashboard)
+├── AUTONOMY.md (when to work)       ├── server.js (Node API)
+└── HIERARCHY.md (who decides)       └── .github/copilot-instructions.md
+```
+
+**Mercury/Nova create Issues via GitHub API** in `mfoster58/100x-stocks`, assigning to `@copilot`. Copilot reads `100x-stocks/.github/copilot-instructions.md` for codebase context.
+
+### What Lives Where
+
+| Content | Repo |
+|---------|------|
+| Agent identities & roles | `agent-team` |
+| Coordination protocols | `agent-team` |
+| Wake-up schedules | `agent-team` |
+| Product source code | `100x-stocks` |
+| Copilot coding instructions | `100x-stocks` |
+| GitHub Issues & PRs | `100x-stocks` |
+| FMP MCP config | `100x-stocks` |
+
+### FMP API Access
+
+- **MCP server** configured in `100x-stocks/.vscode/mcp.json` (for VS Code sessions)
+- **API reference** at `100x-stocks/docs/FMP_API_REFERENCE.md` (Mercury references when creating algo Issues)
+- **API key** in `100x-stocks/.env` (never committed; used by Python scripts at runtime)
+- **Copilot in CI** cannot call FMP live — should mock or use cached data from `data/`
