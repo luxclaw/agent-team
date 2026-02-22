@@ -5,8 +5,8 @@
 ```
 #general       — Weekly priorities, summaries, cross-team coordination
 #engineering   — PRs, code reviews, technical discussions, architecture
-#product       — Feature planning, UX/UI, market research, go-to-market
-#data          — Data quality, pipeline status, algorithm updates, backtesting
+#product       — Feature planning, market research, user insights, go-to-market
+#data          — Algorithm updates, data pipeline, backtesting results
 ```
 
 ## Who Posts Where
@@ -14,53 +14,57 @@
 | Channel | Primary Posters | Purpose |
 |---------|----------------|---------|
 | #general | Lux (lead), all agents | Priorities, summaries, announcements |
-| #engineering | Mercury, Quant | PRs, code reviews, technical decisions |
-| #product | Nova, Mercury, Lux | Features, UX, market research, product strategy |
-| #data | Quant, Mercury | Algorithm updates, data pipeline, backtesting results |
+| #engineering | Mercury | PRs, code reviews, technical decisions, Copilot Issue updates |
+| #product | Nova, Lux | Features, market research, user research, product strategy |
+| #data | Mercury | Algorithm updates, data pipeline status, backtesting results |
 
 ## Agent Interaction Map
 
 ```
 Lux 🔆 (CEO)
-  ├── ↔ Mercury ⚡  (product direction, feature priorities, technical strategy)
-  ├── ↔ Nova ✨     (market insights, product-market fit, go-to-market)
-  └── ↔ Quant 📊   (algorithm strategy, data priorities)
+  ├── → Mercury ⚡  (assigns features, technical priorities)
+  ├── → Nova ✨     (assigns product/market research tasks)
+  ├── ← Mercury     (technical updates, PR status, blockers)
+  └── ← Nova        (market insights, product recommendations)
 
 Mercury ⚡ (CTO)
-  ├── ↔ Quant 📊   (code reviews, data needs for features, PR cross-review)
-  └── ↔ Nova ✨     (UX informed by market research, feature design)
+  ├── → Copilot     (creates GitHub Issues for code execution)
+  ├── ← Copilot     (reviews PRs opened by Copilot)
+  └── ↔ Nova        (product needs ↔ technical feasibility)
 
-Quant 📊 ↔ Nova ✨  (algorithm insights for marketing, data for product positioning)
+Nova ✨ (CMO)
+  ├── → Copilot     (creates Issues for product-related code tasks)
+  └── ↔ Mercury     (user needs → feature design)
 ```
 
 ## Communication Flow
 
-### PR Flow
-```
-Author (Mercury or Quant)
-  → Posts PR to #engineering
-  → Cross-reviewer (Quant or Mercury) reviews
-  → Tisse (Founder) gives final approval
-  → Merge to main
-```
-
 ### Feature Flow
 ```
-Nova (market insight)
-  → #product: opportunity/user need
-  → Lux validates priority
-  → Mercury designs and builds
-  → PR flow (above)
+Lux or Tisse (assigns feature)
+  → Mercury or Nova (research & planning)
+  → Mercury (technical design, Issue creation)
+  → Copilot (code execution)
+  → Mercury (PR review)
+  → Tisse (final approval, merge)
+```
+
+### Research Flow
+```
+Nova (market research on schedule)
+  → #product (findings posted)
+  → Lux (incorporates into priorities)
+  → Mercury (if feature work needed)
+  → Copilot (if code needed)
 ```
 
 ### Algorithm Flow
 ```
-Quant (improvement idea)
-  → #data: proposal + backtest data
-  → Implements on branch
-  → Mercury reviews code in #engineering
-  → Tisse approves
-  → Merge
+Mercury (identifies improvement)
+  → #data (proposal + rationale)
+  → Copilot (Issue with specs)
+  → Mercury (reviews PR, validates results)
+  → Tisse (approves merge)
 ```
 
 ## When to @mention vs Regular Post
@@ -71,11 +75,10 @@ Quant (improvement idea)
 - Tisse asked something
 - Production issue
 
-**Regular post (read within a few hours):**
+**Regular post (read on next wake-up):**
 - Status updates
 - Research findings
 - Ideas and proposals
-- Non-blocking questions
 
 ## Response Expectations
 

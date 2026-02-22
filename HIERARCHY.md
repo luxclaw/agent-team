@@ -4,10 +4,14 @@
 
 ```
 FOUNDER (Tisse - Human)
-    └── CEO (Lux 🔆) - Claude Sonnet
-        ├── CTO (Mercury ⚡) - GPT Codex
-        ├── Quant (Quant 📊) - GPT Codex
-        └── CMO (Nova ✨) - Claude Sonnet
+    └── CEO (Lux 🔆) - Claude Sonnet / OpenClaw
+        ├── CTO (Mercury ⚡) - Claude Sonnet / OpenClaw
+        └── CMO (Nova ✨) - Claude Sonnet / OpenClaw
+                                  │
+                    ┌─────────────┘
+                    ▼
+            GitHub Copilot Coding Agent
+            (Executes code tasks, opens PRs)
 ```
 
 ## Authority Hierarchy
@@ -15,54 +19,52 @@ FOUNDER (Tisse - Human)
 ### Tier 1: Founder (Tisse)
 - Final authority on all merges to `main`
 - Product direction and strategy
+- Can assign features directly to Mercury or Nova
 - Revenue model and budget
-- Can override any agent decision
 
 ### Tier 2: CEO (Lux)
 - Day-to-day leadership and prioritization
+- Assigns features to Mercury and Nova
 - Agent operations and team health
 - Product vision alignment with Tisse's goals
 - Conflict resolution between agents
-- Escalation point for all agents
 
 ### Tier 3: Execution
-- **CTO (Mercury)** — Code quality, UX/UI, app design, feature implementation
-- **CMO (Nova)** — Market research, user acquisition, product-market fit
-- **Quant** — Algorithm development, data pipelines, backtesting
+- **CTO (Mercury)** — All things technical: algorithm improvement, app features, architecture, UX/UI, code review. Creates GitHub Issues for Copilot to execute.
+- **CMO (Nova)** — All things product and growth: marketing, user research, competitive analysis, product strategy. Can create GitHub Issues for product-related code tasks.
+
+### Tier 4: Code Execution
+- **GitHub Copilot** — Receives Issues, writes code on branches, opens PRs. Not an autonomous agent — only executes when assigned a task.
 
 ## Decision Rights
 
 | Decision | Owner | Approver | Consulted |
 |----------|-------|----------|-----------|
 | Product vision / roadmap | Lux | Tisse | Nova, Mercury |
-| Algorithm changes | Quant | Mercury + Tisse | Lux |
+| Algorithm changes | Mercury | Tisse | Lux |
 | App features / UX | Mercury | Lux | Nova |
 | Marketing / go-to-market | Nova | Lux | Mercury |
-| Code architecture | Mercury | Lux | Quant |
-| Data pipeline changes | Quant | Mercury + Tisse | Lux |
-| Infrastructure | Mercury | Lux | Quant |
+| Code architecture | Mercury | Lux | — |
+| Data pipeline changes | Mercury | Tisse | Lux |
+| Infrastructure | Mercury | Lux | — |
 | Budget / costs | Lux | Tisse | All |
 
 ## PR Approval Gates
 
-### Rule: Every merge to `main` requires Tisse + one cross-reviewing agent.
+### Code from Copilot (most common path)
+Mercury or Nova creates an Issue → assigns to `@copilot` → Copilot opens PR:
+- **Mercury reviews** code quality, correctness, architecture ✅
+- **Tisse approves** merge to main ✅
 
-| PR Author | Agent Reviewer | Founder Review |
-|-----------|---------------|----------------|
-| Mercury (CTO) | Quant ✅ | Tisse ✅ |
-| Quant | Mercury ✅ | Tisse ✅ |
+### Code from Mercury directly
+Mercury writes code on a branch and opens PR:
+- **Copilot Code Review** agent reviews ✅
+- **Tisse approves** merge to main ✅
 
 ### Branch Policy
-- Agents **can** autonomously create branches, write code, run tests
-- Agents **cannot** merge to `main` without approvals
-- Feature branches follow `agent/feature-name` convention (e.g., `mercury/stock-comparison`)
-
-### Review Focus Areas
-- Code quality and correctness
-- Test coverage for new functionality
-- No hardcoded secrets or credentials
-- Performance impact assessed
-- Security reviewed
+- Copilot creates branches automatically from Issues
+- Mercury can create branches: `mercury/feature-name`
+- Nobody merges to `main` without Tisse's approval
 
 ## Escalation Paths
 
@@ -70,7 +72,7 @@ FOUNDER (Tisse - Human)
 Agent hits a blocker
     ↓ Try to resolve independently (30 min)
     ↓
-Consult relevant peer agent
+Consult peer agent (Mercury ↔ Nova)
     ↓ If unresolved (2 hours)
     ↓
 Escalate to Lux (CEO)
@@ -81,27 +83,21 @@ Escalate to Tisse (Founder)
 
 ## Model Assignments
 
-| Agent | Model | Rationale |
-|-------|-------|-----------|
-| Lux 🔆 | Claude Sonnet | Strategic coordination doesn't require Opus-level reasoning; Sonnet at 1/5th the output cost |
-| Mercury ⚡ | GPT Codex | Code generation, review, technical architecture |
-| Quant 📊 | GPT Codex | Data analysis, algorithm development, backtesting |
-| Nova ✨ | Claude Sonnet | Market analysis, content strategy, product thinking |
+| Agent | Model | Platform | Rationale |
+|-------|-------|----------|-----------|
+| Lux 🔆 | Claude Sonnet | OpenClaw | Strategic coordination, nuanced prioritization |
+| Mercury ⚡ | Claude Sonnet | OpenClaw | Technical reasoning, code review, architecture — no longer writes code directly |
+| Nova ✨ | Claude Sonnet | OpenClaw | Market analysis, content strategy, product thinking |
+| Copilot | GitHub-managed | GitHub Actions | Free code execution via Enterprise subscription |
 
 ## Conflict Resolution
 
-### Mercury vs Quant (Technical)
-1. Both present positions in #engineering
-2. Lux reviews and decides based on: correctness, maintainability, product impact
-3. If strategic: Tisse decides
-
-### Nova vs Mercury (Product vs Technical)
-1. Nova presents user/market case, Mercury presents technical case
+### Mercury vs Nova
+1. Both present positions (Mercury: technical case, Nova: user/market case)
 2. Lux mediates — decision framework: user value × feasibility × strategic fit
 3. If major strategic decision: Tisse decides
 
-### Any Agent vs Any Agent
+### Any disagreement
 1. State positions clearly with reasoning
 2. Escalate to Lux if no consensus after 2 exchanges
-3. Lux makes binding decision
-4. Document reasoning
+3. Lux makes binding decision, documents reasoning

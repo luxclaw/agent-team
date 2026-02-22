@@ -2,52 +2,49 @@
 
 ## What This Repository Is
 
-A **documentation-only** repository defining a 4-agent AI team that operates the "100x Stocks" project — a stock screening and analysis product. There is no application code, no build system, no tests. The repo contains only Markdown files that define agent identities, roles, workflows, and coordination protocols.
+A **documentation-only** repository defining a 3-agent AI team that operates the "100x Stocks" project. Agents run on OpenClaw (Raspberry Pi 5) and delegate code execution to GitHub Copilot's coding agent (free via Enterprise).
 
-Agents run as Slack bots via OpenClaw on a Raspberry Pi 5.
+## Architecture: Brain + Hands
 
-## Architecture
+- **Brain Layer** (OpenClaw): 3 autonomous agents that think, plan, research, coordinate, and create GitHub Issues
+- **Hands Layer** (GitHub Copilot): Executes code tasks from Issues, opens PRs — free and reactive
 
-- **AGENTS.md** — Workspace conventions all agents follow (session startup, memory system, heartbeats, safety rules)
+### Files
+
+- **AGENTS.md** — Workspace conventions (session startup, memory, safety)
 - **SOUL.md** — Shared personality and behavioral principles
-- **IDENTITY.md** — The primary agent's identity (Lux, the CEO)
-- **USER.md** — Context about the human founder (Tisse/Mathias Foster)
-- **ORCHESTRATION.md** — Multi-agent coordination: communication patterns, decision framework, escalation paths, handoff protocols
-- **HIERARCHY.md** — Org chart, decision rights, PR approval gates, model assignments
-- **COMMUNICATION_MAP.md** — Slack channel structure, interaction patterns, response expectations
-- **AUTONOMY.md** — Wake-up schedules (cron), token budgets, collaboration model, cost estimates
-- **ENGINEERING.md** — Product engineering principles (security-first, visual excellence, collaborative workflow)
-- **roles/** — Per-agent detailed instructions (LUX.md, MERCURY.md, QUANT.md, NOVA.md)
+- **IDENTITY.md** — Primary agent identity (Lux, CEO)
+- **USER.md** — About the founder (Tisse/Mathias Foster, PST timezone)
+- **ORCHESTRATION.md** — Coordination: how agents assign work to Copilot, Issue standards, workflows
+- **HIERARCHY.md** — Org chart, decision rights, PR approval gates
+- **COMMUNICATION_MAP.md** — Slack channels, interaction patterns
+- **AUTONOMY.md** — Wake-up schedules, token budgets, cost estimates
+- **ENGINEERING.md** — Product engineering principles
+- **roles/** — Per-agent instructions (LUX.md, MERCURY.md, NOVA.md)
 
-## Agent Team (4 agents)
+## Agent Team
 
-| Agent | Role | Model | Focus |
-|-------|------|-------|-------|
-| Lux 🔆 | CEO | Claude Sonnet | Agent ops, product vision, company success |
-| Mercury ⚡ | CTO | GPT Codex | Code review, UX/UI, app design, building the product |
-| Quant 📊 | Data/Algo | GPT Codex | Algorithm tuning, backtesting, data pipelines |
-| Nova ✨ | CMO | Claude Sonnet | User acquisition, market research, product-market fit |
+| Agent | Role | Model | Platform | Focus |
+|-------|------|-------|----------|-------|
+| Lux 🔆 | CEO | Claude Sonnet | OpenClaw | Agent ops, product vision, assigns work |
+| Mercury ⚡ | CTO | Claude Sonnet | OpenClaw | Algo, app, tech, UX/UI, code review, creates Issues |
+| Nova ✨ | CMO | Claude Sonnet | OpenClaw | Product strategy, marketing, user research |
+| Copilot | Coder | GitHub-managed | GitHub Actions | Executes Issues, writes code, opens PRs |
 
 ## Key Conventions
 
-### Session Startup Protocol (from AGENTS.md)
-Every agent session reads in order: `SOUL.md` → `USER.md` → `ORCHESTRATION.md` → `memory/YYYY-MM-DD.md` → `MEMORY.md` (main sessions only).
+### Work Flow
+Lux/Tisse assigns features → Mercury or Nova researches/plans → creates GitHub Issue → assigns to `@copilot` → Copilot writes code → Mercury reviews PR → Tisse approves merge.
 
-### PR Approval Rules
-All merges to `main` require **Tisse (founder) + one cross-reviewing agent**:
-- Mercury's PRs: reviewed by Quant + Tisse
-- Quant's PRs: reviewed by Mercury + Tisse
-- Agents can autonomously create branches, code, and test without approval
+### PR Approval
+All merges to `main` require Mercury's code review + Tisse's approval. Mercury is the technical gatekeeper on all code.
+
+### Session Startup (from AGENTS.md)
+Agents read: `SOUL.md` → `USER.md` → `ORCHESTRATION.md` → `memory/YYYY-MM-DD.md` → `MEMORY.md` (main sessions only).
 
 ### Memory System
-- Daily notes: `memory/YYYY-MM-DD.md` (raw logs)
-- Long-term: `MEMORY.md` (curated — never loaded in shared/group contexts)
+- Daily notes: `memory/YYYY-MM-DD.md`
+- Long-term: `MEMORY.md` (never loaded in shared/group contexts)
 
-### Adding New Agent Roles
-New role files go in `roles/` as `AGENTNAME.md`. Follow the structure of existing role files: identity block, core mandate, three main jobs, collaboration patterns, success metrics.
-
-### Safety Rules
-- Never exfiltrate private data
-- Prefer `trash` over `rm`
-- Ask before any external action (emails, tweets, public posts)
-- In group chats: participate, don't dominate
+### Adding Agent Roles
+New role files go in `roles/` as `AGENTNAME.md`. Follow existing structure: identity, core mandate, three jobs, schedule, collaboration, success metrics.

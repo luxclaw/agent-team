@@ -83,7 +83,7 @@
 ### 5. Collaborative Workflow
 
 - **Tisse approves all merges to main:** Agents can autonomously create branches, write code, and test. Only merges to `main` require Tisse's approval.
-- **Cross-review required:** Every PR needs one agent cross-reviewer (Mercury ↔ Quant) plus Tisse.
+- **Cross-review required:** Mercury reviews all code PRs. Tisse gives final approval on all merges to main.
 - **Clear PR descriptions:** Explain:
   - What was built and why
   - Alternatives considered
