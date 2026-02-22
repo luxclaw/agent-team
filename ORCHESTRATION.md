@@ -237,4 +237,4 @@ agent-team (OpenClaw reads)          100x-stocks (Copilot works)
 - **MCP server** configured in `100x-stocks/.vscode/mcp.json` (for VS Code sessions)
 - **API reference** at `100x-stocks/docs/FMP_API_REFERENCE.md` (Mercury references when creating algo Issues)
 - **API key** in `100x-stocks/.env` (never committed; used by Python scripts at runtime)
-- **Copilot in CI** cannot call FMP live — should mock or use cached data from `data/`
+- **Copilot in CI** needs `FMP_API_KEY` as a GitHub Actions secret to call FMP live (see [SETUP.md](SETUP.md))

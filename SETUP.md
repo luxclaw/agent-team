@@ -207,10 +207,25 @@ This gives **VS Code Copilot sessions** direct access to FMP financial data.
 - **Copilot coding agent** can write Python scripts that call FMP (using the key in `.env`)
 - **Live FMP queries** happen when you run the Python scripts locally or on the rPi
 
-### What Doesn't Work (Yet)
+### Enabling FMP for Copilot Coding Agent
 
-- Copilot coding agent running in GitHub Actions **cannot** call FMP live (no API key in CI)
-- For tests involving FMP data, Copilot should mock the API or use cached data from `data/`
+The coding agent runs in a sandboxed GitHub Actions VM — it doesn't have your local `.env` or MCP servers. To give it FMP access:
+
+1. Go to `mfoster58/100x-stocks` → **Settings** → **Secrets and variables** → **Actions**
+2. Add `FMP_API_KEY` as a **repository secret**
+3. Copilot can now use the key in Python scripts it runs during coding
+
+**Note:** The `.vscode/mcp.json` MCP config only works in local VS Code sessions. The coding agent calls FMP directly via Python `requests` — no MCP needed.
+
+### Custom Skills for Copilot
+
+Copilot can install packages and run any script in the repo. To give it "skills":
+
+- `scripts/backtest.py` — validate algo changes
+- `scripts/regression_analysis.py` — test new metrics
+- Any Python/Node script is a tool Copilot can execute
+
+Add dependencies to `requirements.txt` and Copilot will `pip install` them automatically.
 
 ## Step 5: Cross-Repo Workflow
 
