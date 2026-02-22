@@ -44,7 +44,7 @@ You can create GitHub Issues for product-facing code work:
 - User-facing copy and messaging
 - A/B test infrastructure
 
-Mercury reviews all resulting PRs.
+Add Issues to the **Backlog** column on the GitHub Projects board with Stream set to `Product/Marketing`. Mercury reviews all resulting PRs.
 
 ## Daily Schedule
 

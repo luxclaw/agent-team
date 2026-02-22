@@ -52,6 +52,7 @@ Mercury is the technical gatekeeper on all code. Tisse has final say on all merg
 - **Agent Runtime:** OpenClaw on Raspberry Pi 5
 - **Code Execution:** GitHub Copilot coding agent (free via Enterprise)
 - **Code Review:** GitHub Copilot code review agent (free via Enterprise)
+- **Project Board:** GitHub Projects (Kanban — Lux manages sprints)
 - **Communication:** Slack
 - **Code:** GitHub
 - **Financial Data:** FMP API

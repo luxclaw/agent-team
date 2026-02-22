@@ -48,55 +48,93 @@ This creates a branch in `100x-stocks`, writes the code, and opens a PR. The age
 
 **Note:** Slack-triggered Copilot uses the repo where the GitHub app is subscribed. Make sure `mfoster58/100x-stocks` is your default.
 
-## Step 2: GitHub Configuration
+## Step 2: GitHub Projects Board
 
-### 2a. Enable Copilot Coding Agent
+### 2a. Create the Project
+
+1. Go to `mfoster58/100x-stocks` → **Projects** tab → **New project**
+2. Choose **Board** layout
+3. Name it **"100x Stocks"**
+
+### 2b. Set Up Columns
+
+Delete default columns, create these (in order):
+
+| Column | Description |
+|--------|-------------|
+| Backlog | Ideas, research findings, unscoped work |
+| Sprint | Current week's prioritized work |
+| In Progress | Copilot actively coding |
+| In Review | PR open, Mercury reviewing |
+| Ready for Tisse | Mercury approved, awaiting final sign-off |
+| Done | Merged to main |
+
+### 2c. Add Custom Fields
+
+In Project settings → **Fields**, add:
+
+| Field | Type | Options |
+|-------|------|---------|
+| Sprint | Iteration | 1-week iterations starting next Monday |
+| Stream | Single select | `Algorithm`, `App`, `Data Pipeline`, `Product/Marketing` |
+| Priority | Single select | `P0 (Critical)`, `P1 (High)`, `P2 (Medium)`, `P3 (Low)` |
+| Effort | Single select | `S (hours)`, `M (1-2 days)`, `L (3+ days)` |
+
+### 2d. Enable Automations
+
+In Project settings → **Workflows**:
+- **Item added** → Set status to Backlog
+- **Pull request merged** → Set status to Done
+- **Item closed** → Set status to Done
+
+### 2e. Link the Project to the Repo
+
+Go to `mfoster58/100x-stocks` → **Settings** → **Projects** → link the board. This lets Issues auto-appear on the board.
+
+## Step 3: GitHub Configuration
+
+### 3a. Enable Copilot Coding Agent
 
 1. Go to `mfoster58/100x-stocks` → **Settings** → **Copilot** → **Coding agent**
 2. Enable it
 3. The agent can now be assigned to Issues and will open PRs
 
-### 2b. Create Issue Labels
+### 3b. Create Issue Labels
 
-Create these labels in `mfoster58/100x-stocks`:
+Create these labels in `mfoster58/100x-stocks` (status tracking is handled by the Projects board columns, so labels are for type/stream filtering):
 
 | Label | Color | Description |
 |-------|-------|-------------|
-| `draft` | `#E4E669` | Mercury still scoping |
-| `ready` | `#0E8A16` | Fully scoped, assign to Copilot |
-| `in-progress` | `#1D76DB` | Copilot working on it |
-| `in-review` | `#5319E7` | PR open, Mercury reviewing |
-| `changes-requested` | `#FBCA04` | Mercury gave feedback |
-| `ready-for-tisse` | `#D93F0B` | Mercury approved, waiting for Tisse |
-| `urgent` | `#B60205` | Skip the queue |
-| `feature` | `#A2EEEF` | New feature |
+| `algorithm` | `#7057FF` | Engine Power, metrics, backtesting |
+| `app` | `#A2EEEF` | Dashboard, UX, endpoints |
+| `data-pipeline` | `#1D76DB` | FMP integration, refresh, caching |
+| `product` | `#E4E669` | Marketing pages, content, analytics |
 | `bugfix` | `#D73A4A` | Bug fix |
-| `algorithm` | `#7057FF` | Algo improvement |
 | `refactor` | `#C5DEF5` | Code cleanup |
+| `urgent` | `#B60205` | Skip the queue |
 
 You can create these via GitHub CLI:
 ```bash
 cd /Users/mathiasfoster/repos/100x-stocks
-gh label create draft --color E4E669 --description "Mercury still scoping"
-gh label create ready --color 0E8A16 --description "Fully scoped, assign to Copilot"
-gh label create in-progress --color 1D76DB --description "Copilot working on it"
-gh label create in-review --color 5319E7 --description "PR open, Mercury reviewing"
-gh label create changes-requested --color FBCA04 --description "Mercury gave feedback"
-gh label create ready-for-tisse --color D93F0B --description "Mercury approved, waiting for Tisse"
+gh label create algorithm --color 7057FF --description "Engine Power, metrics, backtesting"
+gh label create app --color A2EEEF --description "Dashboard, UX, endpoints"
+gh label create data-pipeline --color 1D76DB --description "FMP integration, refresh, caching"
+gh label create product --color E4E669 --description "Marketing pages, content, analytics"
+gh label create bugfix --color D73A4A --description "Bug fix"
+gh label create refactor --color C5DEF5 --description "Code cleanup"
 gh label create urgent --color B60205 --description "Skip the queue"
-gh label create algorithm --color 7057FF --description "Algorithm improvement"
 ```
 
-### 2c. Branch Protection (Optional but Recommended)
+### 3c. Branch Protection (Optional but Recommended)
 
 Protect `main` in `mfoster58/100x-stocks`:
 - Require pull request reviews before merging
 - Required reviewers: 1 (you)
 - Don't allow bypassing
 
-## Step 3: OpenClaw Agent Setup
+## Step 4: OpenClaw Agent Setup
 
-### 3a. Create GitHub PAT
+### 4a. Create GitHub PAT
 
 Mercury and Nova need a GitHub PAT to create Issues and review PRs in `mfoster58/100x-stocks`:
 
@@ -106,7 +144,7 @@ Mercury and Nova need a GitHub PAT to create Issues and review PRs in `mfoster58
    - **Permissions:** Issues (Read/Write), Pull Requests (Read/Write), Contents (Read)
 3. Store this token securely on the rPi 5 for OpenClaw to use
 
-### 3b. Configure OpenClaw Agents
+### 4b. Configure OpenClaw Agents
 
 Each agent needs:
 - **Identity:** Read from `roles/AGENT_NAME.md` in this repo
@@ -181,7 +219,7 @@ repos:
   config: luxclaw/agent-team
 ```
 
-## Step 4: FMP API & MCP
+## Step 5: FMP API & MCP
 
 ### Already Configured
 
@@ -227,7 +265,7 @@ Copilot can install packages and run any script in the repo. To give it "skills"
 
 Add dependencies to `requirements.txt` and Copilot will `pip install` them automatically.
 
-## Step 5: Cross-Repo Workflow
+## Step 6: Cross-Repo Workflow
 
 ### How Agents Bridge the Two Repos
 
@@ -266,7 +304,7 @@ Mercury reads his role docs from `agent-team`, creates Issues in `100x-stocks`.
 
 `100x-stocks/.github/copilot-instructions.md` already exists and is comprehensive. If the agent team process changes (new labels, new conventions), update it there too.
 
-## Step 6: First Test Run
+## Step 7: First Test Run
 
 Once everything is set up, test the pipeline end-to-end:
 
@@ -277,12 +315,13 @@ Once everything is set up, test the pipeline end-to-end:
    Title: Add loading spinner to stock detail modal
    Body: When a user clicks a stock row, show a loading spinner while
          the detail data loads. Currently the modal is blank for ~1s.
-   Labels: ready, feature
+   Labels: app
    Assignee: @copilot
    ```
-2. Watch Copilot pick it up and open a PR
-3. Review the PR yourself
-4. If good, merge — the pipeline works
+2. Add the Issue to the Projects board → Sprint column
+3. Watch Copilot pick it up and open a PR
+4. Review the PR yourself
+5. If good, merge — card auto-moves to Done
 
 ### OpenClaw Test
 
@@ -291,15 +330,19 @@ Once everything is set up, test the pipeline end-to-end:
 3. Mercury should:
    - Create a well-scoped Issue in `mfoster58/100x-stocks`
    - Assign it to `@copilot`
-   - Label it `ready` + `feature`
+   - Label it `app`
+   - Add to Projects board → Sprint
    - Post to #engineering
 4. Copilot picks it up, codes it, opens PR
-5. Mercury reviews on next wake-up
+5. Mercury reviews on next wake-up, moves card through columns
 
 ## Checklist
 
 - [ ] Slack workspace with 4 channels
 - [ ] GitHub App installed in Slack
+- [ ] GitHub Projects board created with 6 columns
+- [ ] Custom fields added (Sprint, Stream, Priority, Effort)
+- [ ] Board automations enabled
 - [ ] Copilot coding agent enabled on `mfoster58/100x-stocks`
 - [ ] Issue labels created in `mfoster58/100x-stocks`
 - [ ] Branch protection on `main`

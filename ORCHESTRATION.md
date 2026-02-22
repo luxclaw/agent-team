@@ -13,23 +13,60 @@ How 3 OpenClaw agents + GitHub Copilot keep the pipeline full.
 ## The Pipeline
 
 ```
-BACKLOG → ASSIGNED TO COPILOT → PR OPEN → MERCURY REVIEW → READY FOR TISSE → MERGED
+BACKLOG → SPRINT → IN PROGRESS → IN REVIEW → READY FOR TISSE → DONE
 ```
 
 Work flows left to right. Multiple items at each stage simultaneously. The system never stalls waiting for one person.
 
+### GitHub Projects Board
+
+We use a **GitHub Projects** Kanban board on `mfoster58/100x-stocks` as the single source of truth for all work.
+
+**Columns:**
+
+| Column | What's Here | Who Manages |
+|--------|-------------|-------------|
+| Backlog | Ideas, research findings, unscoped work | Nova adds, Lux prioritizes |
+| Sprint | Scoped Issues for current week | Lux assigns weekly, Mercury scopes |
+| In Progress | Copilot actively coding | Auto-moves when assigned to `@copilot` |
+| In Review | PR open, Mercury reviewing | Mercury moves after review |
+| Ready for Tisse | Mercury approved, awaiting final sign-off | Mercury moves after approval |
+| Done | Merged to main | Auto-moves on PR merge |
+
+**Custom Fields:**
+
+| Field | Type | Values |
+|-------|------|--------|
+| Sprint | Iteration | Weekly (Mon-Sun) |
+| Stream | Select | `Algorithm`, `App`, `Data Pipeline`, `Product/Marketing` |
+| Priority | Select | `P0 (Critical)`, `P1 (High)`, `P2 (Medium)`, `P3 (Low)` |
+| Effort | Select | `S (hours)`, `M (1-2 days)`, `L (3+ days)` |
+
+**Built-in Automations:**
+- Issue created → add to Backlog
+- PR linked to Issue → move to In Progress
+- PR merged → move to Done
+- Issue closed → move to Done
+
+**Who adds to the board:**
+- **Tisse:** Add features directly — create an Issue or card, Lux picks it up
+- **Lux:** Prioritizes backlog, creates sprint iterations, moves items to Sprint
+- **Mercury:** Scopes Issues, assigns to Copilot, moves through review columns
+- **Nova:** Adds research-backed feature ideas to Backlog
+
 ### Issue Labels
+
+Labels complement the board (used for filtering, not column tracking):
 
 | Label | Meaning |
 |-------|---------|
-| `draft` | Mercury still scoping the Issue |
-| `ready` | Fully scoped, ready to assign to Copilot |
-| `in-progress` | Copilot working on it |
-| `in-review` | PR open, Mercury reviewing |
-| `changes-requested` | Mercury gave feedback, Copilot iterating |
-| `ready-for-tisse` | Mercury approved — waiting for Tisse's final sign-off |
+| `algorithm` | Engine Power, metrics, backtesting |
+| `app` | Dashboard, UX, endpoints |
+| `data-pipeline` | FMP integration, refresh, caching |
+| `product` | Marketing pages, content, analytics |
+| `bugfix` | Bug fix |
+| `refactor` | Code cleanup |
 | `urgent` | Skip the queue, immediate attention |
-| `feature` / `bugfix` / `refactor` / `maintenance` | Type labels |
 
 ## Issue Creation Standards
 
@@ -100,9 +137,9 @@ When Mercury or Nova creates a GitHub Issue for Copilot:
 Mercury doesn't just approve/reject — he iterates with Copilot:
 
 1. **Copilot opens PR** → Mercury reviews during next scheduled wake-up
-2. **If good:** Label `ready-for-tisse`, post summary to #engineering
+2. **If good:** Move card to Ready for Tisse, post summary to #engineering
 3. **If needs work:** Request specific changes in PR comments → Copilot iterates → Mercury re-reviews next session
-4. **If fundamentally wrong:** Close PR, rewrite Issue with better specs, re-assign to Copilot
+4. **If fundamentally wrong:** Close PR, rewrite Issue, re-assign to Copilot
 
 **Goal:** PRs labeled `ready-for-tisse` are high quality. Tisse's review is a final sanity check, not a debugging session.
 
@@ -151,11 +188,13 @@ Next: [suggested follow-up]
 
 ### Pipeline Status (Lux posts daily)
 ```
-📊 Pipeline Status
+📊 Sprint [N] Status
 Ready for Tisse: [PR #X, PR #Y]
-In review: [PR #Z]
-In progress: [Issue #A, Issue #B]
-Backlog: [N items scoped]
+In Review: [PR #Z]
+In Progress: [Issue #A, Issue #B]
+Sprint Backlog: [N items remaining]
+Backlog: [N total items]
+Velocity: [N merged this week]
 ```
 
 ## Decision Framework
