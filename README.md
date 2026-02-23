@@ -71,12 +71,12 @@ Agents are **configured** in `agent-team`, but **work** in `100x-stocks`.
 | File | Purpose |
 |------|---------|
 | [SETUP.md](SETUP.md) | **Start here** — step-by-step launch guide |
-| [HIERARCHY.md](HIERARCHY.md) | Org structure, decision rights, PR gates |
-| [ORCHESTRATION.md](ORCHESTRATION.md) | Coordination protocols, issue creation workflow |
-| [COMMUNICATION_MAP.md](COMMUNICATION_MAP.md) | Slack channels, communication patterns |
-| [AUTONOMY.md](AUTONOMY.md) | Wake-up schedules, token budgets, cost estimates |
-| [ENGINEERING.md](ENGINEERING.md) | Product engineering principles |
-| [SOUL.md](SOUL.md) | Shared agent personality |
+| [HIERARCHY.md](docs/HIERARCHY.md) | Org structure, decision rights, PR gates |
+| [ORCHESTRATION.md](docs/ORCHESTRATION.md) | Coordination protocols, issue creation workflow |
+| [COMMUNICATION_MAP.md](docs/COMMUNICATION_MAP.md) | Slack channels, communication patterns |
+| [AUTONOMY.md](docs/AUTONOMY.md) | Wake-up schedules, token budgets, cost estimates |
+| [ENGINEERING.md](docs/ENGINEERING.md) | Product engineering principles |
+| [SOUL.md](docs/SOUL.md) | Shared agent personality |
 | [AGENTS.md](AGENTS.md) | Workspace conventions |
-| [USER.md](USER.md) | About Tisse (founder) |
+| [USER.md](docs/USER.md) | About Tisse (founder) |
 | roles/*.md | Per-agent detailed instructions |

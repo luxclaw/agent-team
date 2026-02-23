@@ -12,14 +12,14 @@ A **documentation-only** repository defining a 3-agent AI team that operates the
 ### Files
 
 - **AGENTS.md** — Workspace conventions (session startup, memory, safety)
-- **SOUL.md** — Shared personality and behavioral principles
-- **IDENTITY.md** — Primary agent identity (Lux, CEO)
-- **USER.md** — About the founder (Tisse/Mathias Foster, PST timezone)
-- **ORCHESTRATION.md** — Coordination: how agents assign work to Copilot, Issue standards, workflows
-- **HIERARCHY.md** — Org chart, decision rights, PR approval gates
-- **COMMUNICATION_MAP.md** — Slack channels, interaction patterns
-- **AUTONOMY.md** — Wake-up schedules, token budgets, cost estimates
-- **ENGINEERING.md** — Product engineering principles
+- **docs/SOUL.md** — Shared personality and behavioral principles
+- **docs/IDENTITY.md** — Primary agent identity (Lux, CEO)
+- **docs/USER.md** — About the founder (Tisse/Mathias Foster, PST timezone)
+- **docs/ORCHESTRATION.md** — Coordination: how agents assign work to Copilot, Issue standards, workflows
+- **docs/HIERARCHY.md** — Org chart, decision rights, PR approval gates
+- **docs/COMMUNICATION_MAP.md** — Slack channels, interaction patterns
+- **docs/AUTONOMY.md** — Wake-up schedules, token budgets, cost estimates
+- **docs/ENGINEERING.md** — Product engineering principles
 - **roles/** — Per-agent instructions (LUX.md, MERCURY.md, NOVA.md)
 
 ## Agent Team
@@ -40,7 +40,7 @@ Lux/Tisse assigns features → Mercury or Nova researches/plans → creates GitH
 All merges to `main` require Mercury's code review + Tisse's approval. Mercury is the technical gatekeeper on all code.
 
 ### Session Startup (from AGENTS.md)
-Agents read: `SOUL.md` → `USER.md` → `ORCHESTRATION.md` → `memory/YYYY-MM-DD.md` → `MEMORY.md` (main sessions only).
+Agents read: `docs/SOUL.md` → `docs/USER.md` → `docs/ORCHESTRATION.md` → `memory/YYYY-MM-DD.md` → `MEMORY.md` (main sessions only).
 
 ### Memory System
 - Daily notes: `memory/YYYY-MM-DD.md`

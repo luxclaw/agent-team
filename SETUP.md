@@ -150,7 +150,7 @@ Each agent needs:
 - **Identity:** Read from `roles/AGENT_NAME.md` in this repo
 - **System prompt:** Include the agent's role file + relevant coordination docs
 - **Tools:** GitHub API (via PAT), Slack API, web search
-- **Schedule:** Cron jobs per `AUTONOMY.md`
+- **Schedule:** Cron jobs per `docs/AUTONOMY.md`
 
 #### Mercury's OpenClaw Config (Conceptual)
 
@@ -165,8 +165,8 @@ schedule:
   - "0 10 * * 6"    # 10am Saturday — weekly review
 context:
   - roles/MERCURY.md
-  - ORCHESTRATION.md
-  - HIERARCHY.md
+  - docs/ORCHESTRATION.md
+  - docs/HIERARCHY.md
 tools:
   - github_api       # Create Issues, review PRs in mfoster58/100x-stocks
   - slack_api         # Post to #engineering, #data
@@ -187,7 +187,7 @@ schedule:
   - "0 10 * * 6"    # 10am Saturday — weekly synthesis
 context:
   - roles/NOVA.md
-  - ORCHESTRATION.md
+  - docs/ORCHESTRATION.md
 tools:
   - github_api       # Create product-related Issues
   - slack_api         # Post to #product
@@ -208,9 +208,9 @@ schedule:
   - "0 20 * * 0"    # 8pm Sunday — prep Monday priorities
 context:
   - roles/LUX.md
-  - ORCHESTRATION.md
-  - HIERARCHY.md
-  - AUTONOMY.md
+  - docs/ORCHESTRATION.md
+  - docs/HIERARCHY.md
+  - docs/AUTONOMY.md
 tools:
   - github_api       # Read pipeline status, Issue/PR state
   - slack_api         # Post to #general
@@ -274,8 +274,8 @@ agent-team repo                        100x-stocks repo
 ┌─────────────────────┐                ┌──────────────────────┐
 │ OpenClaw reads:     │                │ Copilot works here:  │
 │ - roles/*.md        │                │ - Writes code        │
-│ - ORCHESTRATION.md  │  GitHub API    │ - Opens PRs          │
-│ - AUTONOMY.md       │ ────────────►  │ - Creates branches   │
+│ - docs/ORCHESTRATION.md  │  GitHub API    │ - Opens PRs          │
+│ - docs/AUTONOMY.md       │ ────────────►  │ - Creates branches   │
 │                     │ (create Issues │                      │
 │ Mercury/Nova think  │  review PRs)   │ copilot-instructions │
 │ here, act there     │                │ .md guides Copilot   │
@@ -349,5 +349,5 @@ Once everything is set up, test the pipeline end-to-end:
 - [ ] GitHub PAT created for OpenClaw agents
 - [ ] OpenClaw installed on rPi 5
 - [ ] Lux, Mercury, Nova configured in OpenClaw
-- [ ] Cron schedules set per AUTONOMY.md
+- [ ] Cron schedules set per docs/AUTONOMY.md
 - [ ] End-to-end test: Issue → Copilot PR → review → merge

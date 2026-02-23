@@ -10,9 +10,9 @@ If `BOOTSTRAP.md` exists, that's your birth certificate. Follow it, figure out w
 
 Before doing anything else:
 
-1. Read `SOUL.md` — this is who you are
-2. Read `USER.md` — this is who you're helping
-3. Read `ORCHESTRATION.md` — model routing strategy
+1. Read `docs/SOUL.md` — this is who you are
+2. Read `docs/USER.md` — this is who you're helping
+3. Read `docs/ORCHESTRATION.md` — model routing strategy
 4. Read `memory/YYYY-MM-DD.md` (today + yesterday) for recent context
 5. **If in MAIN SESSION** (direct chat with your human): Also read `MEMORY.md`
 
@@ -42,7 +42,7 @@ Capture what matters. Decisions, context, things to remember. Skip the secrets u
 - **Memory is limited** — if you want to remember something, WRITE IT TO A FILE
 - "Mental notes" don't survive session restarts. Files do.
 - When someone says "remember this" → update `memory/YYYY-MM-DD.md` or relevant file
-- When you learn a lesson → update AGENTS.md, TOOLS.md, or the relevant skill
+- When you learn a lesson → update AGENTS.md, docs/TOOLS.md, or the relevant skill
 - When you make a mistake → document it so future-you doesn't repeat it
 - **Text > Brain** 📝
 
@@ -116,16 +116,16 @@ Reactions are lightweight social signals. Humans use them constantly — they sa
 
 ## Tools
 
-Skills provide your tools. When you need one, check its `SKILL.md`. Keep local notes (camera names, SSH details, voice preferences) in `TOOLS.md`.
+Skills provide your tools. When you need one, check its `SKILL.md`. Keep local notes (camera names, SSH details, voice preferences) in `docs/TOOLS.md`.
 
 ## 💓 Heartbeats - Be Proactive!
 
 When you receive a heartbeat poll (message matches the configured heartbeat prompt), don't just reply `HEARTBEAT_OK` every time. Use heartbeats productively!
 
 Default heartbeat prompt:
-`Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK.`
+`Read docs/HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK.`
 
-You are free to edit `HEARTBEAT.md` with a short checklist or reminders. Keep it small to limit token burn.
+You are free to edit `docs/HEARTBEAT.md` with a short checklist or reminders. Keep it small to limit token burn.
 
 ### Heartbeat vs Cron: When to Use Each
 
@@ -144,7 +144,7 @@ You are free to edit `HEARTBEAT.md` with a short checklist or reminders. Keep it
 - One-shot reminders ("remind me in 20 minutes")
 - Output should deliver directly to a channel without main session involvement
 
-**Tip:** Batch similar periodic checks into `HEARTBEAT.md` instead of creating multiple cron jobs. Use cron for precise schedules and standalone tasks.
+**Tip:** Batch similar periodic checks into `docs/HEARTBEAT.md` instead of creating multiple cron jobs. Use cron for precise schedules and standalone tasks.
 
 **Things to check (rotate through these, 2-4 times per day):**
 
