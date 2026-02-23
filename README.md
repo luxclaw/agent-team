@@ -24,14 +24,14 @@ FOUNDER (Tisse - Human)
 | **Lux 🔆** | CEO | Claude Sonnet | OpenClaw | Agent ops, product vision, company success, assigns work |
 | **Mercury ⚡** | CTO | Claude Sonnet | OpenClaw | Algo, app features, tech architecture, UX/UI, code review |
 | **Nova ✨** | CMO | Claude Sonnet | OpenClaw | Product strategy, marketing, user research, go-to-market |
-| **Copilot** | Coder | GitHub-managed | GitHub Actions | Executes code tasks from Issues, opens PRs |
+| **Copilot** | Coder | GitHub-managed | GitHub Actions | Executes code tasks via 3 custom agents (algo/app/product) |
 
 ## How Work Flows
 
 1. **Lux or Tisse** assigns a feature/priority to Mercury or Nova
 2. **Mercury or Nova** does research, planning, and design (on OpenClaw)
-3. **Mercury or Nova** creates a GitHub Issue with clear specs and assigns to `@copilot`
-4. **Copilot coding agent** writes code on a branch, runs tests, opens a PR
+3. **Mercury or Nova** creates a GitHub Issue with clear specs and assigns to `@copilot` with the right custom agent
+4. **Copilot custom agent** (`algo-engineer`, `app-engineer`, or `product-engineer`) writes code on a branch, opens a PR
 5. **Mercury** reviews the PR for code quality and correctness
 6. **Tisse** gives final approval → merge to main
 

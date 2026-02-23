@@ -91,13 +91,25 @@ When Mercury or Nova creates a GitHub Issue for Copilot:
 
 **Scope small:** 2-3 hour tasks. Break big features into multiple chained Issues.
 
+### Custom Agent Assignment
+
+When assigning an Issue to Copilot, select the appropriate **custom agent** (defined in `100x-stocks/.github/agents/`):
+
+| Agent | Assign When | Domain |
+|-------|-------------|--------|
+| `algo-engineer` | Algorithm work, Python screener, FMP data, backtesting | `src/screener/`, `scripts/` |
+| `app-engineer` | Dashboard, API, frontend, UX/UI | `server.js`, `public/` |
+| `product-engineer` | Landing pages, content, analytics, growth features | Marketing, SEO, user acquisition |
+
+Each custom agent has deep context about its domain baked into its prompt — no need to repeat architecture details in every Issue. The agent also has access to FMP financial data via MCP.
+
 ## Work Flows
 
 ### Feature Development (Full Pipeline)
 1. **Nova** identifies user need through daily research → posts to #product
 2. **Lux** validates strategic fit during daily check-in → assigns to Mercury
 3. **Mercury** designs technical approach during deep work session
-4. **Mercury** creates 1-3 Issues (breaking feature into parts) → assigns to `@copilot`
+4. **Mercury** creates 1-3 Issues (breaking feature into parts) → assigns to `@copilot` with the right custom agent (`algo-engineer`, `app-engineer`, or `product-engineer`)
 5. **Copilot** writes code on branch, opens PR
 6. **Mercury** reviews during morning/afternoon review → approves or requests changes
 7. **Copilot** iterates on feedback if needed

@@ -99,7 +99,40 @@ Go to `mfoster58/100x-stocks` → **Settings** → **Projects** → link the boa
 2. Enable it
 3. The agent can now be assigned to Issues and will open PRs
 
-### 3b. Create Issue Labels
+### 3b. Configure FMP MCP for Coding Agent
+
+This gives Copilot **live access to FMP financial data** while coding (backtesting, validating metrics, fetching data).
+
+1. Go to `mfoster58/100x-stocks` → **Settings** → **Copilot** → **Coding agent**
+2. In the **MCP configuration** section, add:
+   ```json
+   {
+     "mcpServers": {
+       "fmp": {
+         "type": "sse",
+         "url": "https://financialmodelingprep.com/mcp?apikey=$COPILOT_MCP_FMP_API_KEY",
+         "tools": ["*"]
+       }
+     }
+   }
+   ```
+3. Click **Save**
+4. Go to **Settings** → **Environments** → **New environment** → name it `copilot`
+5. Under **Environment secrets**, add `COPILOT_MCP_FMP_API_KEY` with your FMP API key value
+
+### 3c. Custom Agents (Already Created)
+
+Three custom agent profiles exist in `.github/agents/`:
+
+| Agent File | Name | Assigned By | Domain |
+|------------|------|-------------|--------|
+| `algo-engineer.agent.md` | algo-engineer | Mercury | Algorithm, Python, FMP data, backtesting |
+| `app-engineer.agent.md` | app-engineer | Mercury | Dashboard, Express API, vanilla JS |
+| `product-engineer.agent.md` | product-engineer | Nova | Landing pages, content, analytics |
+
+When assigning an Issue to Copilot, select the right custom agent from the dropdown — each has deep domain context baked in.
+
+### 3d. Create Issue Labels
 
 Create these labels in `mfoster58/100x-stocks` (status tracking is handled by the Projects board columns, so labels are for type/stream filtering):
 
@@ -125,7 +158,7 @@ gh label create refactor --color C5DEF5 --description "Code cleanup"
 gh label create urgent --color B60205 --description "Skip the queue"
 ```
 
-### 3c. Branch Protection (Optional but Recommended)
+### 3e. Branch Protection (Optional but Recommended)
 
 Protect `main` in `mfoster58/100x-stocks`:
 - Require pull request reviews before merging

@@ -109,7 +109,10 @@ Stream 4: Bug fixes / maintenance (as needed)
 ## Collaboration
 
 ### With Copilot
-- Create Issues with clear specs → assign to `@copilot`
+- Create Issues with clear specs → assign to `@copilot` with the right custom agent:
+  - `algo-engineer` for algorithm, Python, FMP, backtesting
+  - `app-engineer` for dashboard, API, frontend, UX
+  - `product-engineer` for marketing pages, content (Nova-initiated Issues)
 - Review PRs, iterate via comments
 - If Copilot fails twice on same Issue, rewrite with more detail or code it yourself
 - Track which Issue patterns work best — refine templates over time
